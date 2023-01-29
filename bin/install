@@ -1,0 +1,5 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p bash
+
+mkdir -p "${HOME}/.bin"
+ln -s "${PWD}/bin/git-pull-rebase-safely" "${HOME}/.bin/git-pull-rebase-safely"

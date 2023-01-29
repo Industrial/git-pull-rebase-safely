@@ -1,0 +1,21 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p git
+
+CURRENT_DIR=$(pwd)
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+CURRENT_COMMIT=$(git rev-parse --short HEAD)
+
+git stash
+git pull --rebase
+
+if [ $? -eq 0 ]; then
+    echo "Git pull was successful!"
+else
+    echo "Merge conflicts detected!"
+    echo "Reverting to original state..."
+    git reset --hard $CURRENT_COMMIT
+    git checkout $CURRENT_BRANCH
+    git stash pop
+fi
+
+cd $CURRENT_DIR
