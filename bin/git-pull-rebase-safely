@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p git
+#!nix-shell -i bash -p bash git
 
 CURRENT_DIR=$(pwd)
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
